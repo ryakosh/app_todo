@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    <app-blury-overlay v-model="overlay">
-      some content somecontent
-      some content somecontent
-      some content somecontent
-
-      <div slot="overlay">
-      some content somecontent
-      some content somecontent
-      </div>
-    </app-blury-overlay>
+    <app-confirm-box v-model="overlay">Are you ok?</app-confirm-box>
   </div>
 </template>
 
 <script>
-import AppBluryOverlay from "./components/AppBluryOverlay/AppBluryOverlay";
+import AppConfirmBox from "./components/AppConfirmBox/AppConfirmBox";
 export default {
   name: "app",
   components: {
-    AppBluryOverlay
+    AppConfirmBox
   },
   data() {
     return {

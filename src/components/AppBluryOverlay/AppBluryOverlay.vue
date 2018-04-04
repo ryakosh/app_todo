@@ -1,10 +1,10 @@
 <!--
   Props: {
-    show: "If true, overlay will appear, It's used with v-model" -> Boolean,
+    show: "If true, overlay will appear, It's used with v-model" -> Boolean
   },
   Events: {
     on-close: "Emitted when overlay's close button is clicked,
-      It's used with v-model" -> (false: Boolean)
+      It's used with `v-model`" -> (false: Boolean)
   },
   Slot: {
     default: "Slot used for storing actual page content",
@@ -24,7 +24,8 @@
         <app-circulartton 
         @click.native="$emit('on-close', false)" 
         bg="#e53935">
-          <img src="./assets/close-overlay-white.svg" alt="Close button" />
+          <img src="../../assets/images/x-white.svg" 
+            alt="Close button" />
         </app-circulartton>
       </div>
 
