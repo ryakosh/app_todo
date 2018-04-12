@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <app-text-edit class="btn" placeholder="What are you up to?" />
+    <app-note-edit class="edit" placeholder="You should something in here..." />
   </div>
 </template>
 
 <script>
-import AppTextEdit from './components/AppTextEdit/AppTextEdit';
+import AppNoteEdit from './components/AppNoteEdit/AppNoteEdit';
 
 export default {
   name: "app",
   components: {
-    AppTextEdit
+    AppNoteEdit
   }
 };
 </script>
@@ -25,8 +25,9 @@ export default {
   background-color: #00BCD4;
   padding: 10px;
 
-  .btn {
-    width: 100%;
+  .edit {
+    width: 90%;
+    height: 300px;
   }
 }
 </style>
