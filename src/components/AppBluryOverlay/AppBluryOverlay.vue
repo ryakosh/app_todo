@@ -74,7 +74,6 @@ export default {
   .overlay {
     width: inherit;
     height: inherit;
-    display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -104,7 +103,7 @@ export default {
   }
 
   .overlay {
-    display: block;
+    display: flex;
   }
 }
 </style>
