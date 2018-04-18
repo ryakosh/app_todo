@@ -92,7 +92,6 @@ export default {
       }
     }
 
-    .completion-mark:hover,
     .completion-mark.checked {
       background-color: #4db8ad;
 
