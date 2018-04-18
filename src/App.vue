@@ -1,42 +1,38 @@
 <template>
   <div id="app">
-    <app-blury-overlay v-model="overlayControls.show">
-      <button @click="showTaskEdit">
-        Show task edit
-      </button>
-
-      <app-task-edit class="app-task" 
-        v-if="overlayControls.appTaskEdit.show" slot="overlay"
-        :task="overlayControls.appTaskEdit.task" />
-    </app-blury-overlay>
+    <app-task-list :tasks="tasks" @on-task-invert="onTaskInvert">
+      <p slot="indicator">Sorry, nothing to show</p>
+    </app-task-list>
   </div>
 </template>
 
 <script>
-import AppTaskEdit from './components/AppTaskEdit/AppTaskEdit';
-import AppBluryOverlay from './components/AppBluryOverlay/AppBluryOverlay';
+import AppTaskList from './components/AppTaskList/AppTaskList';
 
 export default {
   name: "app",
-  components: {
-    AppTaskEdit,
-    AppBluryOverlay
-  },
+  components: {AppTaskList},
   data() {
     return {
-      overlayControls: {
-        show: false,
-        appTaskEdit: {
-          show: false,
-          task: {}
-        }
-      }
+      tasks: [
+        {id: 0, todo: 'First task', note: '', isComplete: false},
+        {id: 1, todo: 'Second task', note: 'Some note', isComplete: true},
+        {id: 2, todo: 'Third task', note: 'Some note', isComplete: true},
+        {id: 3, todo: 'Four task', note: 'Some note', isComplete: false},
+        {id: 4, todo: 'Five task', note: 'Some note', isComplete: false},
+        {id: 5, todo: 'Six task', note: 'Some note', isComplete: true},
+        {id: 7, todo: 'Seven task', note: 'Some note', isComplete: false},
+        {id: 8, todo: 'Seven task', note: 'Some note', isComplete: false},
+        {id: 9, todo: 'Seven task', note: 'Some note', isComplete: true},
+        {id: 10, todo: 'Seven task', note: 'Some note', isComplete: false},
+        {id: 11, todo: 'Seven task', note: 'Some note', isComplete: true},
+      ]
     }
   },
   methods: {
-    showTaskEdit() {
-      this.overlayControls.show = true;
-      this.overlayControls.appTaskEdit.show = true;
+    onTaskInvert(taskId) {
+      let found = this.tasks.find(task => task.id === taskId);
+      found.isComplete = !found.isComplete;
     }
   }
 };
@@ -47,11 +43,8 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #00BCD4;
-
-  .app-task {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 </style>
