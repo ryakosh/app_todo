@@ -39,5 +39,12 @@ export default {
   &:hover, &:focus {
     box-shadow: 0px 2px 5px;
   }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration
+  { display: none; }
+
 }
 </style>
