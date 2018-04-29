@@ -1,39 +1,47 @@
 <template>
   <div id="app">
-    <app-task-list :tasks="tasks" @on-task-invert="onTaskInvert">
-      <p slot="indicator">Sorry, nothing to show</p>
-    </app-task-list>
+    <app-blury-overlay v-model="overlayControls.show">
+      <div class="content">
+        <button @click="overlayControls.show = true">Show overlay</button>
+      </div>
+
+      <div class="overlay" slot="overlay">
+        <app-task-searcher :tasks="tasks" />
+      </div>
+    </app-blury-overlay>
   </div>
 </template>
 
 <script>
-import AppTaskList from './components/AppTaskList/AppTaskList';
+import AppTaskSearcher from './components/AppTaskSearcher/AppTaskSearcher';
+import AppBluryOverlay from './components/AppBluryOverlay/AppBluryOverlay';
 
 export default {
   name: "app",
-  components: {AppTaskList},
+  components: { AppTaskSearcher, AppBluryOverlay },
   data() {
     return {
       tasks: [
-        {id: 0, todo: 'First task', note: '', isComplete: false},
-        {id: 1, todo: 'Second task', note: 'Some note', isComplete: true},
-        {id: 2, todo: 'Third task', note: 'Some note', isComplete: true},
-        {id: 3, todo: 'Four task', note: 'Some note', isComplete: false},
-        {id: 4, todo: 'Five task', note: 'Some note', isComplete: false},
-        {id: 5, todo: 'Six task', note: 'Some note', isComplete: true},
-        {id: 7, todo: 'Seven task', note: 'Some note', isComplete: false},
-        {id: 8, todo: 'Seven task', note: 'Some note', isComplete: false},
-        {id: 9, todo: 'Seven task', note: 'Some note', isComplete: true},
-        {id: 10, todo: 'Seven task', note: 'Some note', isComplete: false},
-        {id: 11, todo: 'Seven task', note: 'Some note', isComplete: true},
-      ]
-    }
-  },
-  methods: {
-    onTaskInvert(taskId) {
-      let found = this.tasks.find(task => task.id === taskId);
-      found.isComplete = !found.isComplete;
-    }
+        { id: 0, todo: "First task", note: "", isComplete: false },
+        { id: 1, todo: "Second task", note: "Some note", isComplete: true },
+        { id: 2, todo: "Third task", note: "Some note", isComplete: true },
+        { id: 3, todo: "Four task", note: "Some note", isComplete: false },
+        { id: 4, todo: "Five task", note: "Some note", isComplete: false },
+        { id: 5, todo: "Six task", note: "Some note", isComplete: true },
+        { id: 7, todo: "Seven task", note: "Some note", isComplete: false },
+        { id: 8, todo: "Seven task", note: "Some note", isComplete: false },
+        { id: 9, todo: "Seven task", note: "Some note", isComplete: true },
+        { id: 10, todo: "Seven task", note: "Some note", isComplete: false },
+        { id: 11, todo: "Seven task", note: "Some note", isComplete: true }
+      ],
+      overlayControls: {
+        show: false,
+        taskSearcher: {
+          show: true,
+          tasks: this.tasks
+        }
+      }
+    };
   }
 };
 </script>
@@ -42,9 +50,20 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  background-color: #00BCD4;
+  background-color: #00bcd4;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 </style>
