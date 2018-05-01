@@ -11,18 +11,18 @@
 
 <template>
   <div class="ate-container">
-    <div class="top">
-      <app-text-edit class="todo" v-model="updatedTask.todo"
+    <div class="ate-top">
+      <app-text-edit class="ate-todo" v-model="updatedTask.todo"
         placeholder="What are you up to?" />
     </div>
 
-    <div class="middle">
-      <app-note-edit class="note" v-model="updatedTask.note"
+    <div class="ate-middle">
+      <app-note-edit class="ate-note" v-model="updatedTask.note"
         placeholder="Add you're extra notes here..." />
     </div>
 
-    <div class="bottom clearfix">
-      <app-circulartton class="edit" bg="#009688" @click.native="editTask">
+    <div class="ate-bottom clearfix">
+      <app-circulartton class="ate-edit" bg="#009688" @click.native="editTask">
         <img src="../../assets/images/tick-white.svg" alt="Edit button" />
       </app-circulartton>
     </div>
@@ -69,33 +69,33 @@ export default {
   flex-direction: column;
   padding: 10px;
 
-  .top, .middle {
+  .ate-top, .ate-middle {
     margin-bottom: 10px;
   }
 
-  .top {
+  .ate-top {
     width: 100%;
   }
 
-    .todo {
+    .ate-todo {
       width: 100%;
     }
 
-  .middle {
+  .ate-middle {
     width: 100%;
     height: 100%;
   }
 
-    .note {
+    .ate-note {
       width: 100%;
       height: 60%;
     }
 
-  .bottom {
+  .ate-bottom {
     width: 100%;
   }
 
-    .edit {
+    .ate-edit {
       float: right;
     }
 }
