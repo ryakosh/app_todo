@@ -15,12 +15,12 @@
 
 <template>
   <div :class="['abo-container', {show}]">
-    <div class="content">
+    <div class="abo-content">
       <slot></slot>
     </div>
 
-    <div class="overlay">
-      <div class="top clearfix">
+    <div class="abo-overlay">
+      <div class="abo-top clearfix">
         <app-circulartton 
         @click.native="$emit('on-close', false)" 
         bg="#e53935">
@@ -29,7 +29,7 @@
         </app-circulartton>
       </div>
 
-      <div class="bottom">
+      <div class="abo-bottom">
         <slot name="overlay"></slot>
       </div>
     </div>
@@ -62,7 +62,7 @@ export default {
   width: 100%;
   height: 100%;
 
-  .content {
+  .abo-content {
     width: inherit;
     height: inherit;
     filter: none;
@@ -71,7 +71,7 @@ export default {
     transition-duration: .25s;
   }
 
-  .overlay {
+  .abo-overlay {
     width: inherit;
     height: inherit;
     flex-direction: column;
@@ -80,7 +80,7 @@ export default {
     display: none;
   }
 
-    .top {
+    .abo-top {
       width: 100%;
       padding: 5px;
 
@@ -89,7 +89,7 @@ export default {
       }
     }
 
-    .bottom {
+    .abo-bottom {
       width: 100%;
       height: 100%;
       padding: 5px;
@@ -98,12 +98,12 @@ export default {
 }
 
 .abo-container.show {
-  .content {
+  .abo-content {
     filter: blur(10px);
     opacity: 0.4;
   }
 
-  .overlay {
+  .abo-overlay {
     display: flex;
   }
 }
