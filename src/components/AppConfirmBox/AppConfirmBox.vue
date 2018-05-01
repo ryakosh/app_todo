@@ -16,19 +16,19 @@
 
 <template>
   <div class="acb-container" v-if="show">
-    <div class="confirm">
-      <div class="top">
+    <div class="acb-confirm">
+      <div class="acb-top">
         <p><slot></slot></p>
       </div>
 
-      <div class="bottom clearfix">
-        <app-circulartton class="btn"
+      <div class="acb-bottom clearfix">
+        <app-circulartton class="acb-btn"
           @click.native="onBtnClick(true)"
           bg="#009688">
             <img src="../../assets/images/tick-white.svg" alt="Confirm button" />
         </app-circulartton>
 
-        <app-circulartton class="btn" 
+        <app-circulartton class="acb-btn" 
           @click.native="onBtnClick(false)"
           bg="#f44336">
             <img src="../../assets/images/x-white.svg" alt="Reject button" />
@@ -75,7 +75,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  .confirm {
+  .acb-confirm {
     width: 90%;
     height: 40%;
     background-color: white;
@@ -84,7 +84,7 @@ export default {
     flex-direction: column;
   }
 
-    .top {
+    .acb-top {
       width: 100%;
       height: 100%;
       display: flex;
@@ -92,11 +92,11 @@ export default {
       align-items: center;
     }
 
-    .bottom {
+    .acb-bottom {
       width: 100%;
     }
 
-      .btn {
+      .acb-btn {
         float: right;
         margin-right: 8px;
       }
