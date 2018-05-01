@@ -94,6 +94,7 @@ export default {
       height: 100%;
       padding: 5px;
       position: relative;
+      display: flex;
     }
 }
 
