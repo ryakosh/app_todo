@@ -64,7 +64,7 @@ export default {
       this.$emit('on-task-invert', taskId);
       const selectedTask = this.tasks.find(task => task.id === taskId);
       if (selectedTask.isComplete) {
-        document.getElementById('audio-complete').play();
+        document.getElementById('atl-audio-complete').play();
       }
     },
     onTaskDelete(taskId) {

@@ -1,17 +1,17 @@
 <template>
   <div class="ats-container">
-    <div class="top">
-      <app-edit-text class="input-search" type="search"
+    <div class="ats-top">
+      <app-edit-text class="ats-input-search" type="search" autofocus
         v-model="searchQuery" placeholder="Search your todos..." />
     </div>
 
-    <div class="bottom">
-      <app-task-list class="list-tasks" :tasks="foundTasks" 
+    <div class="ats-bottom">
+      <app-task-list class="ats-list-tasks" :tasks="foundTasks" 
         @on-task-invert="$emit('on-task-invert', $event)"
         @on-task-delete="$emit('on-task-delete', $event)"
         @on-task-edit="$emit('on-task-edit', $event)" >
 
-        <div class="indicator-not-found" slot="indicator">
+        <div class="ats-indicator-not-found" slot="indicator">
           <img src="./assets/indicator-not-found.svg" 
             alt="Not found indicator" />
 
@@ -70,15 +70,15 @@ export default {
   flex-direction: column;
   padding: 10px 10px 0 10px;
 
-  .top {
+  .ats-top {
     width: 100%;
   }
 
-    .input-search {
+    .ats-input-search {
       width: 100%;
     }
 
-  .bottom {
+  .ats-bottom {
     width: 100%;
     height: 100%;
     display: flex;
@@ -86,14 +86,14 @@ export default {
     align-items: flex-end;
   }
 
-    .list-tasks {
+    .ats-list-tasks {
       width: 95%;
-      height: 95%;
+      height: 90%;
     }
 
-      .indicator-not-found {
-        width: 150px;
-        width: 150px;
+      .ats-indicator-not-found {
+        width: 130px;
+        width: 130px;
         text-align: center;
 
         img {

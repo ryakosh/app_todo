@@ -92,7 +92,7 @@ export default {
     .abo-bottom {
       width: 100%;
       height: 100%;
-      padding: 5px;
+      padding: 5px 5px 0 5px;
       position: relative;
       display: flex;
     }
