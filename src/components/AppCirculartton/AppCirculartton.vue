@@ -14,7 +14,7 @@
 
 <template>
 <button :class="['ac-btn', {fill, dark}]" type="button"
-  :style="`background: ${bg}`">
+  :style="`background: ${bg}`" @click="$emit('click')">
   <div class="ac-btn-container">
     <slot></slot>
   </div>
