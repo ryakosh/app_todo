@@ -10,7 +10,7 @@
 -->
 
 <template>
-  <textarea class="ane-container" :value="value"
+  <textarea class="ane" :value="value"
     @input="$emit('input', $event.target.value)">
   </textarea>
 </template>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ane-container {
+.ane {
   padding: 15px;
   border: none;
   outline: none;

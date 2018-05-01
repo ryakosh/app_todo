@@ -10,7 +10,7 @@
 -->
 
 <template>
-  <input class="ate-container" type="text" :value="value"
+  <input class="ate" type="text" :value="value"
     @input="$emit('input', $event.target.value)" />
 </template>
 
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ate-container {
+.ate {
   padding: 15px;
   border: 0;
   outline: 0;
