@@ -18,18 +18,18 @@
 
 <template>
   <div class="atl-container">
-    <ul class="list-tasks" v-if="tasks.length">
+    <ul class="atl-list-tasks" v-if="tasks.length">
       <app-task v-for="task of tasks" :task="task" :key="task.id"
         @on-task-invert="onTaskInvert"
         @on-task-edit="$emit('on-task-edit', task.id)"
         @on-task-delete="onTaskDelete" />
     </ul>
 
-    <div class="indicator-empty" v-else>
+    <div class="atl-indicator-empty" v-else>
       <slot name="indicator"></slot>
     </div>
 
-    <audio id="audio-complete">
+    <audio id="atl-audio-complete">
       <source src="./assets/complete.wav" type="audio/wav" />
     </audio>
 
@@ -92,7 +92,7 @@ export default {
   box-shadow: 0px 0px 25px 3px rgba(0, 0, 0, .5);
   z-index: 2;
 
-  .list-tasks {
+  .atl-list-tasks {
     width: 100%;
     height: 100%;
     border-radius: inherit;
@@ -103,7 +103,7 @@ export default {
     z-index: 1;
   }
 
-  .indicator-empty {
+  .atl-indicator-empty {
     width: 100%;
     height: 100%;
     display: flex;
