@@ -13,7 +13,7 @@
   <div class="ate-container">
     <div class="ate-top">
       <app-text-edit class="ate-todo" v-model="updatedTask.todo"
-        placeholder="What are you up to?" />
+        placeholder="What are you up to?" autofocus />
     </div>
 
     <div class="ate-middle">
@@ -52,6 +52,11 @@ export default {
     return {
       updatedTask: {todo: this.task.todo, note: this.task.note}
     };
+  },
+  watch: {
+    task(newTask) {
+      this.updatedTask = newTask;
+    }
   },
   methods: {
     editTask() {
