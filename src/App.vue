@@ -171,7 +171,7 @@ export default {
 
   .top {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     transition: padding, .25s;
   }
 
@@ -199,8 +199,9 @@ export default {
 
   .list-tasks {
     width: 95%;
-    height: 100%;
-    transition: width, .25s;
+    height: 90%;
+    transition-property: width, height;
+    transition-duration: .25s;
   }
 
   .indicator-empty {
@@ -230,22 +231,18 @@ export default {
 }
 
 // Small to medium tablet.
-@media screen and (min-width: 600px) and (max-width: 960px) {
+@media screen and (min-width: 600px) {
   #app {
-    
-
-    .top {
-      padding: 10px;
-    }
 
     .list-tasks {
       width: 80%;
+      height: 80%;
     }
   }
 }
 
 // Large tablet to laptop.
-@media screen and (min-width: 960px) and (max-width: 1264px) {
+@media screen and (min-width: 960px) {
   #app {
     
 
@@ -259,13 +256,9 @@ export default {
   }
 }
 
-@media screen and (min-width: 1264px) and (max-width: 1904px) {
+@media screen and (min-width: 1264px) {
   #app {
-    
 
-    .top {
-      padding: 15px;
-    }
 
     .list-tasks {
       width: 60%;

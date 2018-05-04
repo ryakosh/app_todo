@@ -46,12 +46,14 @@ export default {
 
 <style scoped lang="scss">
 .ac-btn {
-  width: 40px;
-  height: 40px;
+  width: 47px;
+  height: 47px;
   border: none;
   border-radius: 50%;
   outline: none;
   cursor: pointer;
+  transition-property: width, height;
+  transition-duration: .25s;
 
   &-container {
     width: 100%;
@@ -82,6 +84,34 @@ export default {
       width: 100%;
       height: 100%;
       border-radius: inherit;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .ac-btn {
+    width: 50px;
+    height: 50px;
+
+    &-container {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .ac-btn {
+    width: 60px;
+    height: 60px;
+
+    &-container {
+      img {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
 }
