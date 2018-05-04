@@ -239,7 +239,7 @@ export default {
     }
 
     .list-tasks {
-      width: 70%;
+      width: 80%;
     }
   }
 }
@@ -254,7 +254,7 @@ export default {
     }
 
     .list-tasks {
-      width: 60%;
+      width: 70%;
     }
   }
 }
@@ -268,7 +268,7 @@ export default {
     }
 
     .list-tasks {
-      width: 50%;
+      width: 60%;
     }
   }
 }
