@@ -71,7 +71,7 @@ export default {
   },
   data() {
     return {
-      tasks: [],
+      tasks: this.getLocalTasks() || [],
       lastUsedID: 0,
       unusedIDs: [],
       overlayCtrls: {
@@ -104,6 +104,7 @@ export default {
       if (task.id !== undefined) {
         const foundTaskIdx = this.findTaskIdx(task.id);
         Object.assign(this.tasks[foundTaskIdx], task);
+        this.updateLocalTasks();
       } else {
         this.pushTask(this.unusedIDs.pop() || this.lastUsedID++,
           task.todo, task.note);
@@ -122,6 +123,7 @@ export default {
 
       this.tasks[foundTaskIdx].isComplete = !this.tasks[foundTaskIdx]
         .isComplete;
+      this.updateLocalTasks();
     },
     showTaskSrchr() {
       this.resetOverlay();
@@ -136,9 +138,19 @@ export default {
     },
     pushTask(id, todo, note, isComplete=false) {
       this.tasks.push({id, todo, note, isComplete});
+      this.updateLocalTasks();
     },
     delTask(taskIdx) {
       this.tasks.splice(taskIdx, 1);
+      this.updateLocalTasks();
+    },
+    updateLocalTasks() {
+      localStorage.tasks = JSON.stringify(this.tasks);
+    },
+    getLocalTasks() {
+      return localStorage.tasks ?
+        JSON.parse(localStorage.tasks) :
+        false;
     }
   }
 };
@@ -160,6 +172,7 @@ export default {
   .top {
     width: 100%;
     padding: 5px;
+    transition: padding, .25s;
   }
 
   .btn-search {
@@ -187,6 +200,7 @@ export default {
   .list-tasks {
     width: 95%;
     height: 100%;
+    transition: width, .25s;
   }
 
   .indicator-empty {
@@ -212,6 +226,50 @@ export default {
   .overlay {
     width: 100%;
     height: 100%;
+  }
+}
+
+// Small to medium tablet.
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  #app {
+    
+
+    .top {
+      padding: 10px;
+    }
+
+    .list-tasks {
+      width: 70%;
+    }
+  }
+}
+
+// Large tablet to laptop.
+@media screen and (min-width: 960px) and (max-width: 1264px) {
+  #app {
+    
+
+    .top {
+      padding: 15px;
+    }
+
+    .list-tasks {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: 1264px) and (max-width: 1904px) {
+  #app {
+    
+
+    .top {
+      padding: 15px;
+    }
+
+    .list-tasks {
+      width: 50%;
+    }
   }
 }
 </style>
