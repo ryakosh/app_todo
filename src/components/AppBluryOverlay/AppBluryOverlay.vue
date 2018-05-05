@@ -65,9 +65,8 @@ export default {
   .abo-content {
     width: inherit;
     height: inherit;
-    filter: none;
     opacity: none;
-    transition-property: filter, opacity;
+    transition-property: opacity;
     transition-duration: .25s;
   }
 
@@ -100,8 +99,8 @@ export default {
 
 .abo-container.show {
   .abo-content {
-    filter: blur(10px);
     opacity: 0.4;
+    filter: blur(10px);
   }
 
   .abo-overlay {
