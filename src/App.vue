@@ -50,6 +50,10 @@
           @on-task-invert="onInvertTask" />
       </div>
     </app-blury-overlay>
+
+    <app-notifier :show="notifierCtrls.show">
+      {{ notifierCtrls.message }}
+    </app-notifier>
   </div>
 </template>
 
@@ -59,6 +63,7 @@ import AppTaskList from "./components/AppTaskList/AppTaskList";
 import AppCirculartton from "./components/AppCirculartton/AppCirculartton";
 import AppTaskSearcher from "./components/AppTaskSearcher/AppTaskSearcher";
 import AppTaskEdit from "./components/AppTaskEdit/AppTaskEdit";
+import AppNotifier from "./components/AppNotifier/AppNotifier";
 
 export default {
   name: "app",
@@ -67,13 +72,15 @@ export default {
     AppTaskList,
     AppCirculartton,
     AppTaskSearcher,
-    AppTaskEdit
+    AppTaskEdit,
+    AppNotifier
   },
   data() {
     return {
       tasks: this.getLocalTasks() || [],
       lastUsedID: 0,
       unusedIDs: [],
+      notify: this.makeNotifier(),
       overlayCtrls: {
         show: false,
         taskEdt: {
@@ -83,6 +90,10 @@ export default {
         taskSrchr: {
           show: false
         }
+      },
+      notifierCtrls: {
+        show: false,
+        message: ""
       }
     };
   },
@@ -92,8 +103,8 @@ export default {
       this.overlayCtrls.show = true;
       this.overlayCtrls.taskEdt.show = true;
 
-      this.overlayCtrls.taskEdt.task = taskID !== undefined ?
-        this.findTask(taskID) : {};
+      this.overlayCtrls.taskEdt.task =
+        taskID !== undefined ? this.findTask(taskID) : {};
     },
     resetOverlay() {
       this.overlayCtrls.show = false;
@@ -101,13 +112,21 @@ export default {
       this.overlayCtrls.taskSrchr.show = false;
     },
     onEdtTask(task) {
+      if (!task.todo) {
+        this.notify("Please enter your todo!", 1500);
+        return;
+      }
+
       if (task.id !== undefined) {
         const foundTaskIdx = this.findTaskIdx(task.id);
         Object.assign(this.tasks[foundTaskIdx], task);
         this.updateLocalTasks();
       } else {
-        this.pushTask(this.unusedIDs.pop() || this.lastUsedID++,
-          task.todo, task.note);
+        this.pushTask(
+          this.unusedIDs.pop() || this.lastUsedID++,
+          task.todo,
+          task.note
+        );
       }
 
       this.resetOverlay();
@@ -130,14 +149,14 @@ export default {
       this.overlayCtrls.show = true;
       this.overlayCtrls.taskSrchr.show = true;
     },
-    findTaskIdx(taskID) { 
-        return this.tasks.findIndex(t => t.id === taskID);
+    findTaskIdx(taskID) {
+      return this.tasks.findIndex(t => t.id === taskID);
     },
     findTask(taskID) {
       return this.tasks.find(t => t.id === taskID);
     },
-    pushTask(id, todo, note, isComplete=false) {
-      this.tasks.push({id, todo, note, isComplete});
+    pushTask(id, todo, note, isComplete = false) {
+      this.tasks.push({ id, todo, note, isComplete });
       this.updateLocalTasks();
     },
     delTask(taskIdx) {
@@ -148,9 +167,18 @@ export default {
       localStorage.tasks = JSON.stringify(this.tasks);
     },
     getLocalTasks() {
-      return localStorage.tasks ?
-        JSON.parse(localStorage.tasks) :
-        false;
+      return localStorage.tasks ? JSON.parse(localStorage.tasks) : false;
+    },
+    makeNotifier() {
+      let lastTimeout = null;
+
+      return (mes, dur) => {
+        clearTimeout(lastTimeout);
+
+        this.notifierCtrls.message = mes;
+        this.notifierCtrls.show = true;
+        lastTimeout = setTimeout(() => (this.notifierCtrls.show = false), dur);
+      };
     }
   }
 };
@@ -172,7 +200,7 @@ export default {
   .top {
     width: 100%;
     padding: 10px;
-    transition: padding, .25s;
+    transition: padding, 0.25s;
   }
 
   .btn-search {
@@ -201,7 +229,7 @@ export default {
     width: 95%;
     height: 90%;
     transition-property: width, height;
-    transition-duration: .25s;
+    transition-duration: 0.25s;
   }
 
   .indicator-empty {
@@ -233,7 +261,6 @@ export default {
 // Small to medium tablet.
 @media screen and (min-width: 600px) {
   #app {
-
     .list-tasks {
       width: 80%;
       height: 80%;
@@ -244,8 +271,6 @@ export default {
 // Large tablet to laptop.
 @media screen and (min-width: 960px) {
   #app {
-    
-
     .top {
       padding: 15px;
     }
@@ -258,8 +283,6 @@ export default {
 
 @media screen and (min-width: 1264px) {
   #app {
-
-
     .list-tasks {
       width: 60%;
     }
