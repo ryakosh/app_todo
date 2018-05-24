@@ -15,10 +15,6 @@
           </app-circulartton>
         </div>
 
-        <div class="middle">
-          <h1>My Do</h1>
-        </div>
-
         <div class="bottom">
           <app-task-list class="list-tasks" :tasks="tasks"
            @on-task-edit="showTaskEdt"
@@ -77,9 +73,9 @@ export default {
   },
   data() {
     return {
-      tasks: this.getLocalTasks() || [],
-      lastUsedID: 0,
-      unusedIDs: [],
+      tasks: this.getLocalProperty('tasks') || [],
+      lastUsedID: this.getLocalProperty('lastUsedID') || 0,
+      unusedIDs: this.getLocalProperty('unusedIDs') || [],
       notify: this.makeNotifier(),
       overlayCtrls: {
         show: false,
@@ -120,13 +116,15 @@ export default {
       if (task.id !== undefined) {
         const foundTaskIdx = this.findTaskIdx(task.id);
         Object.assign(this.tasks[foundTaskIdx], task);
-        this.updateLocalTasks();
+        this.upLocalProp('tasks', this.tasks);
       } else {
         this.pushTask(
           this.unusedIDs.pop() || this.lastUsedID++,
           task.todo,
           task.note
         );
+        this.upLocalProp('unusedIDs', this.unusedIDs)
+        this.upLocalProp('lastUsedID', this.lastUsedID);
       }
 
       this.resetOverlay();
@@ -142,7 +140,7 @@ export default {
 
       this.tasks[foundTaskIdx].isComplete = !this.tasks[foundTaskIdx]
         .isComplete;
-      this.updateLocalTasks();
+      this.upLocalProp('tasks', this.tasks);
     },
     showTaskSrchr() {
       this.resetOverlay();
@@ -157,17 +155,18 @@ export default {
     },
     pushTask(id, todo, note, isComplete = false) {
       this.tasks.push({ id, todo, note, isComplete });
-      this.updateLocalTasks();
+      this.upLocalProp('tasks', this.tasks);
     },
     delTask(taskIdx) {
       this.tasks.splice(taskIdx, 1);
-      this.updateLocalTasks();
+      this.upLocalProp('tasks', this.tasks);
     },
-    updateLocalTasks() {
-      localStorage.tasks = JSON.stringify(this.tasks);
+    upLocalProp(propName, val) {
+      localStorage[propName] = JSON.stringify(val);
     },
-    getLocalTasks() {
-      return localStorage.tasks ? JSON.parse(localStorage.tasks) : false;
+    getLocalProperty(propName) {
+      const localProp = localStorage[propName];
+      return localProp ? JSON.parse(localProp) : null;
     },
     makeNotifier() {
       let lastTimeout = null;
@@ -209,12 +208,6 @@ export default {
 
   .btn-add {
     float: right;
-  }
-
-  .middle {
-    width: 100%;
-    text-align: center;
-    color: white;
   }
 
   .bottom {

@@ -55,7 +55,7 @@ export default {
   },
   watch: {
     task(newTask) {
-      this.updatedTask = newTask;
+      this.updatedTask = {...newTask};
     }
   },
   methods: {
