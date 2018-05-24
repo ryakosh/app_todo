@@ -65,7 +65,7 @@ export default {
   .abo-content {
     width: inherit;
     height: inherit;
-    opacity: none;
+    opacity: 1;
     transition-property: opacity;
     transition-duration: .25s;
   }
@@ -76,7 +76,8 @@ export default {
     flex-direction: column;
     position: fixed;
     top: 0;
-    display: none;
+    visibility: hidden;
+    display: flex;
   }
 
     .abo-top {
@@ -104,7 +105,7 @@ export default {
   }
 
   .abo-overlay {
-    display: flex;
+    visibility: visible;
   }
 }
 </style>
