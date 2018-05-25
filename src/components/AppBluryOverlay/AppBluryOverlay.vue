@@ -68,6 +68,7 @@ export default {
     opacity: 1;
     transition-property: opacity;
     transition-duration: .25s;
+    will-change: opacity;
   }
 
   .abo-overlay {
