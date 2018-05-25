@@ -24,14 +24,14 @@
       <div class="acb-bottom clearfix">
         <app-circulartton class="acb-btn"
           @click.native="onBtnClick(true)"
-          bg="#009688">
-            <img src="../../assets/images/tick-white.svg" alt="Confirm button" />
+          bg="white">
+            <img src="../../assets/images/tick-dark.svg" alt="Confirm button" />
         </app-circulartton>
 
         <app-circulartton class="acb-btn" 
           @click.native="onBtnClick(false)"
-          bg="#f44336">
-            <img src="../../assets/images/x-white.svg" alt="Reject button" />
+          bg="white">
+            <img src="../../assets/images/x-dark.svg" alt="Reject button" />
         </app-circulartton>
       </div>
     </div>
@@ -78,10 +78,11 @@ export default {
   .acb-confirm {
     width: 90%;
     height: 40%;
-    background-color: white;
+    background-color: #212121;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    color: white;
   }
 
     .acb-top {
