@@ -35,19 +35,19 @@ $notifier-padding: 20px;
   padding: $notifier-padding;
   background-color: #212121;
   position: fixed;
-  bottom: -$notifier-height - $notifier-padding;
-  transition-property: bottom, box-shadow;
-  transition-duration: .25s;
+  bottom: 0;
+  transition: transform .25s;
+  transform: translateY($notifier-height + $notifier-padding);
   color: white;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  box-shadow: none;
+  will-change: transform;
 
   &.show {
-    bottom: 0;
+    transform: translateY(0);
     box-shadow: 0 -1px 12px black;
   }
 }
