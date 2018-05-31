@@ -29,7 +29,7 @@
       <slot name="indicator"></slot>
     </div>
 
-    <audio id="atl-audio-complete">
+    <audio id="atl-audio-complete" preload="auto">
       <source src="./assets/complete.wav" type="audio/wav" />
     </audio>
 
