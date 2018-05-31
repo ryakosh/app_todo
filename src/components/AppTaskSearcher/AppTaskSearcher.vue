@@ -6,13 +6,13 @@
     </div>
 
     <div class="ats-bottom">
-      <app-task-list class="ats-list-tasks" :tasks="foundTasks" 
+      <app-task-list class="ats-list-tasks" :tasks="foundTasks"
         @on-task-invert="$emit('on-task-invert', $event)"
         @on-task-delete="$emit('on-task-delete', $event)"
         @on-task-edit="$emit('on-task-edit', $event)" >
 
         <div class="ats-indicator-not-found" slot="indicator">
-          <img src="./assets/indicator-not-found.svg" 
+          <img src="./assets/indicator-not-found.svg"
             alt="Not found indicator" />
 
           <span>Nothing found!</span>
@@ -30,36 +30,36 @@ export default {
   name: 'AppTaskSearcher',
   components: {
     AppTaskList,
-    AppEditText
+    AppEditText,
   },
   data() {
     return {
-      searchQuery: ''
-    }
+      searchQuery: '',
+    };
   },
   props: {
     tasks: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    foundTasks: function() {
-     return this.tasks.filter((task) => {
-       const todoLower = String(task.todo).toLowerCase();
-       const noteLower = String(task.note).toLowerCase();
-       const sqLower = String(this.searchQuery).toLowerCase();
+    foundTasks() {
+      return this.tasks.filter((task) => {
+        const todoLower = String(task.todo).toLowerCase();
+        const noteLower = String(task.note).toLowerCase();
+        const sqLower = String(this.searchQuery).toLowerCase();
 
-       if ((todoLower.includes(sqLower) || 
-        noteLower.includes(sqLower)) && 
+        if ((todoLower.includes(sqLower) ||
+        noteLower.includes(sqLower)) &&
         sqLower) {
           return true;
         }
-     }) 
-    }
+      });
+    },
   },
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

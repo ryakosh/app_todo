@@ -4,7 +4,7 @@
       an object in the form of `{todo: String, note: String}`" -> Object
   },
   Events: {
-    on-edit-task: "Emitted when task is ready to be 
+    on-edit-task: "Emitted when task is ready to be
       edited(when edit button is clicked)" -> (Object)
   }
 -->
@@ -31,7 +31,7 @@
 
 <script>
 import AppCirculartton from '../AppCirculartton/AppCirculartton';
-import AppTextEdit from '../AppTextEdit/AppTextEdit'
+import AppTextEdit from '../AppTextEdit/AppTextEdit';
 import AppNoteEdit from '../AppNoteEdit/AppNoteEdit';
 
 export default {
@@ -39,30 +39,30 @@ export default {
   components: {
     AppCirculartton,
     AppTextEdit,
-    AppNoteEdit
+    AppNoteEdit,
   },
   props: {
     task: {
       type: Object,
       required: false,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
-      updatedTask: {todo: this.task.todo, note: this.task.note}
+      updatedTask: { todo: this.task.todo, note: this.task.note },
     };
   },
   watch: {
     task(newTask) {
-      this.updatedTask = {...newTask};
-    }
+      this.updatedTask = { ...newTask };
+    },
   },
   methods: {
     editTask() {
-      this.$emit('on-edit-task', {...this.task, ...this.updatedTask});
-    }
-  }
+      this.$emit('on-edit-task', { ...this.task, ...this.updatedTask });
+    },
+  },
 };
 </script>
 

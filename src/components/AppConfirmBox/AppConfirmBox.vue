@@ -28,7 +28,7 @@
             <img src="../../assets/images/tick-dark.svg" alt="Confirm button" />
         </app-circulartton>
 
-        <app-circulartton class="acb-btn" 
+        <app-circulartton class="acb-btn"
           @click.native="onBtnClick(false)"
           bg="white">
             <img src="../../assets/images/x-dark.svg" alt="Reject button" />
@@ -46,21 +46,21 @@ export default {
   components: { AppCirculartton },
   model: {
     prop: 'show',
-    event: 'on-close'
+    event: 'on-close',
   },
   props: {
     show: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     onBtnClick(isConfirmed) {
       this.$emit('on-settled', isConfirmed);
       this.$emit('on-close', false);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">

@@ -3,13 +3,13 @@
     <app-blury-overlay v-model="overlayCtrls.show">
       <div class="content">
         <div class="top clearfix">
-          <app-circulartton 
-            @click="showTaskSrchr" 
+          <app-circulartton
+            @click="showTaskSrchr"
             class="btn-search" bg="white">
             <img src="./assets/images/loupe-gray.svg" alt="Search button" />
           </app-circulartton>
 
-          <app-circulartton class="btn-add" 
+          <app-circulartton class="btn-add"
             @click="showTaskEdt" bg="white">
             <img src="./assets/images/plus-gray.svg" alt="Add button" />
           </app-circulartton>
@@ -21,7 +21,7 @@
            @on-task-delete="onDelTask"
            @on-task-invert="onInvertTask" >
             <div class="indicator-empty" slot="indicator">
-              <img src="./assets/images/empty-box-yellow.svg" 
+              <img src="./assets/images/empty-box-yellow.svg"
                 alt="No tasks indicator" />
 
               <span>No tasks!, Click +</span>
@@ -33,12 +33,12 @@
       </div>
 
       <div class="overlay" slot="overlay">
-        <app-task-edit class="task-edit" 
+        <app-task-edit class="task-edit"
           v-show="overlayCtrls.taskEdt.show"
-          :task="overlayCtrls.taskEdt.task" 
+          :task="overlayCtrls.taskEdt.task"
           @on-edit-task="onEdtTask" />
-        
-        <app-task-searcher class="task-searcher" 
+
+        <app-task-searcher class="task-searcher"
           v-show="overlayCtrls.taskSrchr.show"
           :tasks="tasks"
           @on-task-edit="showTaskEdt"
@@ -54,22 +54,22 @@
 </template>
 
 <script>
-import AppBluryOverlay from "./components/AppBluryOverlay/AppBluryOverlay";
-import AppTaskList from "./components/AppTaskList/AppTaskList";
-import AppCirculartton from "./components/AppCirculartton/AppCirculartton";
-import AppTaskSearcher from "./components/AppTaskSearcher/AppTaskSearcher";
-import AppTaskEdit from "./components/AppTaskEdit/AppTaskEdit";
-import AppNotifier from "./components/AppNotifier/AppNotifier";
+import AppBluryOverlay from './components/AppBluryOverlay/AppBluryOverlay';
+import AppTaskList from './components/AppTaskList/AppTaskList';
+import AppCirculartton from './components/AppCirculartton/AppCirculartton';
+import AppTaskSearcher from './components/AppTaskSearcher/AppTaskSearcher';
+import AppTaskEdit from './components/AppTaskEdit/AppTaskEdit';
+import AppNotifier from './components/AppNotifier/AppNotifier';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     AppBluryOverlay,
     AppTaskList,
     AppCirculartton,
     AppTaskSearcher,
     AppTaskEdit,
-    AppNotifier
+    AppNotifier,
   },
   data() {
     return {
@@ -81,16 +81,16 @@ export default {
         show: false,
         taskEdt: {
           show: false,
-          task: {}
+          task: {},
         },
         taskSrchr: {
-          show: false
-        }
+          show: false,
+        },
       },
       notifierCtrls: {
         show: false,
-        message: ""
-      }
+        message: '',
+      },
     };
   },
   methods: {
@@ -109,7 +109,7 @@ export default {
     },
     onEdtTask(task) {
       if (!task.todo) {
-        this.notify("Please enter your todo!", 1500);
+        this.notify('Please enter your todo!', 1500);
         return;
       }
 
@@ -121,9 +121,9 @@ export default {
         this.pushTask(
           this.unusedIDs.pop() || this.lastUsedID++,
           task.todo,
-          task.note
+          task.note,
         );
-        this.upLocalProp('unusedIDs', this.unusedIDs)
+        this.upLocalProp('unusedIDs', this.unusedIDs);
         this.upLocalProp('lastUsedID', this.lastUsedID);
       }
 
@@ -154,7 +154,9 @@ export default {
       return this.tasks.find(t => t.id === taskID);
     },
     pushTask(id, todo, note, isComplete = false) {
-      this.tasks.push({ id, todo, note, isComplete });
+      this.tasks.push({
+        id, todo, note, isComplete,
+      });
       this.upLocalProp('tasks', this.tasks);
     },
     delTask(taskIdx) {
@@ -178,8 +180,8 @@ export default {
         this.notifierCtrls.show = true;
         lastTimeout = setTimeout(() => (this.notifierCtrls.show = false), dur);
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

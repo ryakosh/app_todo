@@ -1,7 +1,7 @@
 <!--
   Props: {
     task: "An object representing a single task" ->
-      {todo: "Todo text" -> String, 
+      {todo: "Todo text" -> String,
        note: "Additional note for the task" -> String,
        isComplete: "Completion state of the task" -> Boolean}
   },
@@ -18,7 +18,7 @@
 <template>
   <li class="at-container">
     <div class="left">
-      <div :class="['completion-mark', {checked: task.isComplete}]" 
+      <div :class="['completion-mark', {checked: task.isComplete}]"
         @click="$emit('on-task-invert', task.id)">
       </div>
     </div>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="right">
-      <img class="indicator-note" v-if="task.note" 
+      <img class="indicator-note" v-if="task.note"
         src="./assets/bars-black.svg" alt="Bars icon" />
 
       <app-circulartton @click.native="$emit('on-task-delete', task.id)"
@@ -40,17 +40,17 @@
 </template>
 
 <script>
-import AppCirculartton from "../AppCirculartton/AppCirculartton";
+import AppCirculartton from '../AppCirculartton/AppCirculartton';
 
 export default {
-  name: "AppTask",
+  name: 'AppTask',
   components: { AppCirculartton },
   props: {
     task: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

@@ -15,14 +15,14 @@
 
 <script>
 export default {
-  name: "AppNotifier",
+  name: 'AppNotifier',
   props: {
     show: {
       required: true,
-      type: Boolean
-    }
-  }
-}
+      type: Boolean,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <!--
   Props: {
-    value: "Used for v-model, Accepts the text to show in the NoteEdit" -> 
+    value: "Used for v-model, Accepts the text to show in the NoteEdit" ->
       String
   },
   Events: {
@@ -22,10 +22,10 @@ export default {
     value: {
       type: String,
       required: false,
-      default: ''
-    }
-  }
-}
+      default: '',
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

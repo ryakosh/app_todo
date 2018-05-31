@@ -21,10 +21,10 @@
 
     <div class="abo-overlay">
       <div class="abo-top clearfix">
-        <app-circulartton 
-        @click.native="$emit('on-close', false)" 
+        <app-circulartton
+        @click.native="$emit('on-close', false)"
         bg="#e53935">
-          <img src="../../assets/images/x-white.svg" 
+          <img src="../../assets/images/x-white.svg"
             alt="Close button" />
         </app-circulartton>
       </div>
@@ -37,23 +37,23 @@
 </template>
 
 <script>
-import AppCirculartton from "../AppCirculartton/AppCirculartton";
+import AppCirculartton from '../AppCirculartton/AppCirculartton';
 
 export default {
-  name: "AppBluryOverlay",
+  name: 'AppBluryOverlay',
   components: {
-    AppCirculartton
+    AppCirculartton,
   },
   model: {
-    prop: "show",
-    event: "on-close"
+    prop: 'show',
+    event: 'on-close',
   },
   props: {
     show: {
       type: Boolean,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

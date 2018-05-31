@@ -23,24 +23,24 @@
 
 <script>
 export default {
-  name: "AppCirculartton",
+  name: 'AppCirculartton',
   props: {
     bg: {
       type: String,
       required: false,
-      default: "white"
+      default: 'white',
     },
     fill: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     dark: {
       type: Boolean,
       required: false,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>
 

@@ -45,19 +45,19 @@ import AppConfirmBox from '../AppConfirmBox/AppConfirmBox';
 
 export default {
   name: 'AppTaskList',
-  components: {AppTask, AppConfirmBox},
+  components: { AppTask, AppConfirmBox },
   props: {
     tasks: {
       type: Array,
       required: true,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {
       selectedTaskId: null,
-      showConfirmBox: false
-    }
+      showConfirmBox: false,
+    };
   },
   methods: {
     onTaskInvert(taskId) {
@@ -77,9 +77,9 @@ export default {
       }
       this.selectedTaskId = null;
       this.showConfirmBox = false;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
