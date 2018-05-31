@@ -46,9 +46,9 @@ export default {
   computed: {
     foundTasks: function() {
      return this.tasks.filter((task) => {
-       const todoLower = task.todo.toLowerCase();
-       const noteLower = task.note.toLowerCase()
-       const sqLower = this.searchQuery.toLowerCase();
+       const todoLower = String(task.todo).toLowerCase();
+       const noteLower = String(task.note).toLowerCase();
+       const sqLower = String(this.searchQuery).toLowerCase();
 
        if ((todoLower.includes(sqLower) || 
         noteLower.includes(sqLower)) && 
