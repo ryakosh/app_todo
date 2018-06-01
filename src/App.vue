@@ -175,12 +175,14 @@ export default {
 
       return (mes, dur) => {
         clearTimeout(lastTimeout);
-
         this.notifierCtrls.message = mes;
         this.notifierCtrls.show = true;
-        lastTimeout = setTimeout(function hideNotifier() {
+
+        const hideNotifier = function hideNotifier() {
           this.notifierCtrls.show = false;
-        }, dur);
+        }
+
+        lastTimeout = setTimeout(hideNotifier.bind(this), dur);
       };
     },
   },
