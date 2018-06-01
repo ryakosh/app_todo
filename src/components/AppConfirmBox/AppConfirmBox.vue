@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import AppCirculartton from '../AppCirculartton/AppCirculartton';
+import AppCirculartton from '../AppCirculartton/AppCirculartton.vue';
 
 export default {
   name: 'AppConfirmBox',

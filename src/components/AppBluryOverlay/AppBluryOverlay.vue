@@ -37,13 +37,11 @@
 </template>
 
 <script>
-import AppCirculartton from '../AppCirculartton/AppCirculartton';
+import AppCirculartton from '../AppCirculartton/AppCirculartton.vue';
 
 export default {
   name: 'AppBluryOverlay',
-  components: {
-    AppCirculartton,
-  },
+  components: { AppCirculartton },
   model: {
     prop: 'show',
     event: 'on-close',

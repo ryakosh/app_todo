@@ -54,12 +54,12 @@
 </template>
 
 <script>
-import AppBluryOverlay from './components/AppBluryOverlay/AppBluryOverlay';
-import AppTaskList from './components/AppTaskList/AppTaskList';
-import AppCirculartton from './components/AppCirculartton/AppCirculartton';
-import AppTaskSearcher from './components/AppTaskSearcher/AppTaskSearcher';
-import AppTaskEdit from './components/AppTaskEdit/AppTaskEdit';
-import AppNotifier from './components/AppNotifier/AppNotifier';
+import AppBluryOverlay from './components/AppBluryOverlay/AppBluryOverlay.vue';
+import AppTaskList from './components/AppTaskList/AppTaskList.vue';
+import AppCirculartton from './components/AppCirculartton/AppCirculartton.vue';
+import AppTaskSearcher from './components/AppTaskSearcher/AppTaskSearcher.vue';
+import AppTaskEdit from './components/AppTaskEdit/AppTaskEdit.vue';
+import AppNotifier from './components/AppNotifier/AppNotifier.vue';
 
 export default {
   name: 'app',
@@ -83,9 +83,7 @@ export default {
           show: false,
           task: {},
         },
-        taskSrchr: {
-          show: false,
-        },
+        taskSrchr: { show: false },
       },
       notifierCtrls: {
         show: false,
@@ -99,8 +97,9 @@ export default {
       this.overlayCtrls.show = true;
       this.overlayCtrls.taskEdt.show = true;
 
-      this.overlayCtrls.taskEdt.task =
-        taskID !== undefined ? this.findTask(taskID) : {};
+      this.overlayCtrls.taskEdt.task = (
+        taskID !== undefined ? this.findTask(taskID) : {}
+      );
     },
     resetOverlay() {
       this.overlayCtrls.show = false;
@@ -119,7 +118,7 @@ export default {
         this.upLocalProp('tasks', this.tasks);
       } else {
         this.pushTask(
-          this.unusedIDs.pop() || this.lastUsedID++,
+          this.unusedIDs.pop() || this.lastUsedID + 1,
           task.todo,
           task.note,
         );
@@ -138,8 +137,9 @@ export default {
     onInvertTask(taskID) {
       const foundTaskIdx = this.findTaskIdx(taskID);
 
-      this.tasks[foundTaskIdx].isComplete = !this.tasks[foundTaskIdx]
-        .isComplete;
+      this.tasks[foundTaskIdx].isComplete = (
+        !this.tasks[foundTaskIdx].isComplete
+      );
       this.upLocalProp('tasks', this.tasks);
     },
     showTaskSrchr() {
@@ -178,7 +178,9 @@ export default {
 
         this.notifierCtrls.message = mes;
         this.notifierCtrls.show = true;
-        lastTimeout = setTimeout(() => (this.notifierCtrls.show = false), dur);
+        lastTimeout = setTimeout(function hideNotifier() {
+          this.notifierCtrls.show = false;
+        }, dur);
       };
     },
   },

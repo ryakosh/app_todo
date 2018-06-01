@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import AppCirculartton from '../AppCirculartton/AppCirculartton';
-import AppTextEdit from '../AppTextEdit/AppTextEdit';
-import AppNoteEdit from '../AppNoteEdit/AppNoteEdit';
+import AppCirculartton from '../AppCirculartton/AppCirculartton.vue';
+import AppTextEdit from '../AppTextEdit/AppTextEdit.vue';
+import AppNoteEdit from '../AppNoteEdit/AppNoteEdit.vue';
 
 export default {
   name: 'AppTaskEdit',
@@ -44,8 +44,7 @@ export default {
   props: {
     task: {
       type: Object,
-      required: false,
-      default: {},
+      required: true,
     },
   },
   data() {

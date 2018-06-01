@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import AppTaskList from '../AppTaskList/AppTaskList';
-import AppEditText from '../AppTextEdit/AppTextEdit';
+import AppTaskList from '../AppTaskList/AppTaskList.vue';
+import AppEditText from '../AppTextEdit/AppTextEdit.vue';
 
 export default {
   name: 'AppTaskSearcher',
@@ -50,11 +50,13 @@ export default {
         const noteLower = String(task.note).toLowerCase();
         const sqLower = String(this.searchQuery).toLowerCase();
 
-        if ((todoLower.includes(sqLower) ||
-        noteLower.includes(sqLower)) &&
-        sqLower) {
+        if ((todoLower.includes(sqLower)
+          || noteLower.includes(sqLower))
+          && sqLower) {
           return true;
         }
+
+        return false;
       });
     },
   },

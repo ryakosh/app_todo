@@ -40,42 +40,44 @@
 </template>
 
 <script>
-import AppTask from '../AppTask/AppTask';
-import AppConfirmBox from '../AppConfirmBox/AppConfirmBox';
+import AppTask from '../AppTask/AppTask.vue';
+import AppConfirmBox from '../AppConfirmBox/AppConfirmBox.vue';
 
 export default {
   name: 'AppTaskList',
-  components: { AppTask, AppConfirmBox },
+  components: {
+    AppTask,
+    AppConfirmBox,
+  },
   props: {
     tasks: {
       type: Array,
       required: true,
-      default: [],
     },
   },
   data() {
     return {
-      selectedTaskId: null,
+      selectedtaskID: null,
       showConfirmBox: false,
     };
   },
   methods: {
-    onTaskInvert(taskId) {
-      this.$emit('on-task-invert', taskId);
-      const selectedTask = this.tasks.find(task => task.id === taskId);
+    onTaskInvert(taskID) {
+      this.$emit('on-task-invert', taskID);
+      const selectedTask = this.tasks.find(task => task.id === taskID);
       if (selectedTask.isComplete) {
         document.getElementById('atl-audio-complete').play();
       }
     },
-    onTaskDelete(taskId) {
+    onTaskDelete(taskID) {
       this.showConfirmBox = true;
-      this.selectedTaskId = taskId;
+      this.selectedtaskID = taskID;
     },
     onSettled(isConfirmed) {
       if (isConfirmed) {
-        this.$emit('on-task-delete', this.selectedTaskId);
+        this.$emit('on-task-delete', this.selectedtaskID);
       }
-      this.selectedTaskId = null;
+      this.selectedtaskID = null;
       this.showConfirmBox = false;
     },
   },
